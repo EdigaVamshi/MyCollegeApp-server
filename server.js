@@ -6,7 +6,6 @@ const College = require('./models/College');
 const app = express();
 
 app.use(bodyParser.json({ limit: '10mb' }));
-console.log('MONGODB_URI:', process.env.MONGODB_URI);  // Debugging line
 
 mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
