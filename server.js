@@ -8,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.json({ limit: '10mb' }));
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error"));
 db.once('open', () => console.log("Connected to Database"));
@@ -37,6 +37,7 @@ app.get('/api/colleges-info', async (req, res) => {
         res.status(500).json({ error: "Failed to retrieve colleges-info" });
     }
 });
+<<<<<<< HEAD
 
 app.get('/ping', (req, res) => {
   res.status(200).send('pong');
@@ -57,5 +58,12 @@ app.post('/submit-bug', async (req, res) => {
         res.status(500).json({error: 'Failed to submit bug report'})
     }
 })
+=======
+>>>>>>> 9ddd8c8c20a4cf2ce878daaa40ddf63927fd8eaf
 
-app.listen(8000, () => console.log('Server running on port 8000'));
+app.get('/ping', (req, res) => {
+  res.status(200).send('pong');
+});
+
+
+app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
