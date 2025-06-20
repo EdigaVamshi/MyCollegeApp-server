@@ -37,11 +37,6 @@ app.get('/api/colleges-info', async (req, res) => {
         res.status(500).json({ error: "Failed to retrieve colleges-info" });
     }
 });
-<<<<<<< HEAD
-
-app.get('/ping', (req, res) => {
-  res.status(200).send('pong');
-});
 
 app.post('/submit-bug', async (req, res) => {
     try{
@@ -57,9 +52,7 @@ app.post('/submit-bug', async (req, res) => {
     } catch (err){
         res.status(500).json({error: 'Failed to submit bug report'})
     }
-})
-=======
->>>>>>> 9ddd8c8c20a4cf2ce878daaa40ddf63927fd8eaf
+});
 
 app.get('/ping', (req, res) => {
   res.status(200).send('pong');
