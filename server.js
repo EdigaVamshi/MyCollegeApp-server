@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const College = require('./models/College');
+const BugReport=require('./models/BugReport')
 const app = express();
 
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -34,6 +35,26 @@ app.get('/api/colleges-info', async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Failed to retrieve colleges-info" });
+    }
+});
+
+app.get('/ping', (req, res) => {
+  res.status(200).send('pong');
+});
+
+app.post('/submit-bug', async (req, res) => {
+    try{
+        const {message}=req.body;
+
+        if(!message || typeof message !== 'string'){
+            return res.status(400).json({error: 'Message is required'});
+        }
+
+        const newReport=new BugReport({message});
+        await newReport.save();
+        res.status(200).json({message: 'Bug report submitted !'});
+    } catch (err){
+        res.status(500).json({error: 'Failed to submit bug report'})
     }
 })
 
